@@ -1,0 +1,94 @@
+@AgendaAi_HostAddress = http://localhost:5051
+
+GET {{AgendaAi_HostAddress}}/persons/legalperson
+
+###
+
+GET {{AgendaAi_HostAddress}}/persons/naturalperson
+
+###
+
+POST {{AgendaAi_HostAddress}}/persons/legalperson/
+Content-Type: application/json
+
+{
+  "name":"Eve",
+  "email":"adam@gmail.com",
+  "password":"12345",
+  "phoneNumber":"0000-0000",
+  "address":"test",
+  "cnpj":"123",
+  "socialName":"teste"
+}
+###
+
+PUT {{AgendaAi_HostAddress}}/persons/legalperson/0
+Content-Type: application/json
+
+{
+  "id":0,
+  "name":"Anne",
+  "email":"adam@gmail.com",
+  "password":"12345",
+  "phoneNumber":"0000-0000",
+  "address":"test",
+  "cnpj":"123",
+  "socialName":"teste"
+}
+###
+
+POST {{AgendaAi_HostAddress}}/persons/naturalperson/
+Content-Type: application/json
+
+{
+  "name":"Eve",
+  "email":"adam@gmail.com",
+  "password":"12345",
+  "phoneNumber":"0000-0000",
+  "address":"test",
+  "cpf":"123",
+  "birhtDate":"1989-08-05T09:30:50"
+}
+###
+
+DELETE {{AgendaAi_HostAddress}}/persons/legal/2
+
+###
+
+
+
+GET {{AgendaAi_HostAddress}}/persons/legalperson
+
+###
+
+GET {{AgendaAi_HostAddress}}/persons/naturalperson
+
+###
+
+GET {{AgendaAi_HostAddress}}/persons/superadmin
+
+###
+
+POST {{AgendaAi_HostAddress}}/persons/superadmin
+Content-Type: application/json
+
+{
+  "email":"alana@gmail.com",
+  "password":"123"
+}
+
+###
+
+PUT {{AgendaAi_HostAddress}}/persons/superadmin/0
+Content-Type: application/json
+
+{
+  "email":"teste@gmail.com",
+  "password":"123"
+}
+
+###
+
+DELETE {{AgendaAi_HostAddress}}/persons/superadmin/0
+
+###
