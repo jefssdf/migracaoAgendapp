@@ -13,7 +13,7 @@ using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("f42c1b7d-1752-40a8-a0c4-767a038173eb")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgendaAi")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a82badb63608419c866b273c3c94b33925de472")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgendaAi")]
