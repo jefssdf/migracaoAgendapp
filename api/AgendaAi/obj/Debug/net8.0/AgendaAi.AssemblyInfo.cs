@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgendaAi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a82badb63608419c866b273c3c94b33925de472")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c3a09b73a20fe7a1a4f86e0732709ff262129ae")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgendaAi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgendaAi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
