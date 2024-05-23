@@ -46,11 +46,13 @@ export default defineComponent({
       clientes: [],
       mostrarModal: false,
       clienteEditado: {
-        nome: '',
-        senha: '',
-        cnpj: '',
+        name: '',
         email: '',
-        telefone: ''
+        password: '',
+        phoneNumber: '',
+        address: '',
+        cnpj: '',
+        socialName: ''
         // Adicione outros campos do cliente aqui conforme necessário
       },
       clienteIndexEditado: null
@@ -62,7 +64,7 @@ export default defineComponent({
   methods: {
     async getClientes () {
       try {
-        const response = await axios.get('http://localhost:5051/persons/LegalPerson')
+        const response = await axios.get('http://localhost:5123/LegalEntity')
         this.clientes = response.data
         console.log(response.data)
         console.log(this.clientes)
@@ -77,7 +79,15 @@ export default defineComponent({
     },
     fecharModal () {
       this.mostrarModal = false
-      this.clienteEditado = { nome: '', senha: '', cnpj: '', email: '', telefone: '' } // Limpar os dados do cliente editado
+      this.clienteEditado = {
+        name: '',
+        email: '',
+        password: '',
+        phoneNumber: '',
+        address: '',
+        cnpj: '',
+        socialName: ''
+      } // Limpar os dados do cliente editado
       this.clienteIndexEditado = null
     },
     async salvarCliente () {
