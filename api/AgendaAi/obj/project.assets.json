@@ -6882,19 +6882,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Cliente\\.nuget\\packages\\": {}
+    "C:\\Users\\Tiago\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Cliente\\Videos\\TesteFinal\\teste\\quasar-project\\api\\AgendaAi\\AgendaAi.csproj",
+      "projectUniqueName": "C:\\Users\\Tiago\\Desktop\\Especialização Tecnica\\Projeto\\AgendaApp\\api\\AgendaAi\\AgendaAi.csproj",
       "projectName": "AgendaAi",
-      "projectPath": "C:\\Users\\Cliente\\Videos\\TesteFinal\\teste\\quasar-project\\api\\AgendaAi\\AgendaAi.csproj",
-      "packagesPath": "C:\\Users\\Cliente\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Cliente\\Videos\\TesteFinal\\teste\\quasar-project\\api\\AgendaAi\\obj\\",
+      "projectPath": "C:\\Users\\Tiago\\Desktop\\Especialização Tecnica\\Projeto\\AgendaApp\\api\\AgendaAi\\AgendaAi.csproj",
+      "packagesPath": "C:\\Users\\Tiago\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tiago\\Desktop\\Especialização Tecnica\\Projeto\\AgendaApp\\api\\AgendaAi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Cliente\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6975,7 +6975,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

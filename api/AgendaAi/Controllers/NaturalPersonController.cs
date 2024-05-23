@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AgendaAi.Models;
 using AgendaAi.DB;
@@ -97,7 +97,7 @@ namespace AgendaAi.Controllers
                 Email = input.Email,
                 Password = input.Password,
                 PhoneNumber = input.PhoneNumber,
-                Address = input.Address,
+                //Address = input.Address,
                 Cpf = input.Cpf,
                 BirthDate = input.BirthDate,
             };
@@ -109,7 +109,7 @@ namespace AgendaAi.Controllers
                 Email = naturalPersonDTo.Email,
                 Password = naturalPersonDTo.Password,
                 PhoneNumber = naturalPersonDTo.PhoneNumber,
-                Address = naturalPersonDTo.Address,
+                //Address = naturalPersonDTo.Address,
                 Cpf = naturalPersonDTo.Cpf,
                 BirthDate = naturalPersonDTo.BirthDate,
             };

@@ -36,12 +36,12 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import axios from 'axios';
+import { defineComponent } from 'vue'
+import axios from 'axios'
 
 export default defineComponent({
   name: 'IndexPage',
-  data() {
+  data () {
     return {
       clientes: [],
       mostrarModal: false,
@@ -54,58 +54,59 @@ export default defineComponent({
         // Adicione outros campos do cliente aqui conforme necessário
       },
       clienteIndexEditado: null
-    };
+    }
   },
-  mounted() {
-    this.getClientes();
+  mounted () {
+    this.getClientes()
   },
   methods: {
-    async getClientes() {
+    async getClientes () {
       try {
-        const response = await axios.get('http://localhost:5051/persons/LegalPerson');
-        this.clientes = response.data;
+        const response = await axios.get('http://localhost:5051/persons/LegalPerson')
+        this.clientes = response.data
+        console.log(response.data)
+        console.log(this.clientes)
       } catch (error) {
-        console.error('Erro ao buscar clientes:', error);
+        console.error('Erro ao buscar clientes:', error)
       }
     },
-    editarCliente(index) {
-      this.clienteEditado = { ...this.clientes[index] };
-      this.clienteIndexEditado = index;
-      this.mostrarModal = true;
+    editarCliente (index) {
+      this.clienteEditado = { ...this.clientes[index] }
+      this.clienteIndexEditado = index
+      this.mostrarModal = true
     },
-    fecharModal() {
-      this.mostrarModal = false;
-      this.clienteEditado = { nome: '', senha: '', cnpj: '', email: '', telefone: '' }; // Limpar os dados do cliente editado
-      this.clienteIndexEditado = null;
+    fecharModal () {
+      this.mostrarModal = false
+      this.clienteEditado = { nome: '', senha: '', cnpj: '', email: '', telefone: '' } // Limpar os dados do cliente editado
+      this.clienteIndexEditado = null
     },
-    async salvarCliente() {
+    async salvarCliente () {
       try {
         // Aqui você pode implementar a lógica para salvar as alterações do cliente
-        console.log('Salvar alterações do cliente:', this.clienteEditado);
+        console.log('Salvar alterações do cliente:', this.clienteEditado)
         // Por exemplo, atualizar o cliente na lista:
         if (this.clienteIndexEditado !== null) {
-          const response = await axios.put(`http://localhost:5051/persons/LegalPerson/${this.clienteEditado.id}`, this.clienteEditado);
-          this.clientes[this.clienteIndexEditado] = response.data;
+          const response = await axios.put(`http://localhost:5051/persons/LegalPerson/${this.clienteEditado.id}`, this.clienteEditado)
+          this.clientes[this.clienteIndexEditado] = response.data
         }
-        this.fecharModal(); // Fechar o modal após salvar
+        this.fecharModal() // Fechar o modal após salvar
       } catch (error) {
-        console.error('Erro ao salvar cliente:', error);
+        console.error('Erro ao salvar cliente:', error)
       }
     },
-    async removerCliente(id) {
+    async removerCliente (id) {
       try {
         // Lógica para remover cliente
-        console.log('Remover cliente com ID:', id);
-        await axios.delete(`http://localhost:5051/persons/LegalPerson/${id}`);
-        this.clientes = this.clientes.filter(cliente => cliente.id !== id);
+        console.log('Remover cliente com ID:', id)
+        await axios.delete(`http://localhost:5051/persons/LegalPerson/${id}`)
+        this.clientes = this.clientes.filter(cliente => cliente.id !== id)
       } catch (error) {
-        console.error('Erro ao remover cliente:', error);
+        console.error('Erro ao remover cliente:', error)
       }
     }
   }
-});
+})
 </script>
-
 
 <style scoped>
 /* Estilos personalizados aqui */

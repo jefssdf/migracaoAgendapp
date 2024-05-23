@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AgendaAi.Models;
 using AgendaAi.DB;
@@ -99,9 +99,9 @@ namespace AgendaAi.Controllers
                 Email = input.Email,
                 Password = input.Password,
                 PhoneNumber = input.PhoneNumber,
-                Address = input.Address,
-                Cnpj = input.Cnpj,
-                SocialName = input.SocialName,
+                //Address = input.Address,
+                //Cnpj = input.Cnpj,
+                //SocialName = input.SocialName,
             };
         private static LegalPerson DTOToLegalPerson(LegalPersonDTO legalPersonDTo) =>
             new LegalPerson
@@ -110,9 +110,9 @@ namespace AgendaAi.Controllers
                 Email = legalPersonDTo.Email,
                 Password = legalPersonDTo.Password,
                 PhoneNumber = legalPersonDTo.PhoneNumber,
-                Address = legalPersonDTo.Address,
-                Cnpj = legalPersonDTo.Cnpj,
-                SocialName = legalPersonDTo.SocialName,
+                //Address = legalPersonDTo.Address,
+                //Cnpj = legalPersonDTo.Cnpj,
+                //SocialName = legalPersonDTo.SocialName,
             };
     }
 }
