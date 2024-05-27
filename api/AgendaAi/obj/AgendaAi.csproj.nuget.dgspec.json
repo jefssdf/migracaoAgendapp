@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tiago\\Desktop\\Especialização Tecnica\\Projeto\\AgendaApp\\api\\AgendaAi\\AgendaAi.csproj": {}
+    "C:\\Users\\Cliente\\Music\\Teste45\\quasar-project\\api\\AgendaAi\\AgendaAi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tiago\\Desktop\\Especialização Tecnica\\Projeto\\AgendaApp\\api\\AgendaAi\\AgendaAi.csproj": {
+    "C:\\Users\\Cliente\\Music\\Teste45\\quasar-project\\api\\AgendaAi\\AgendaAi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tiago\\Desktop\\Especialização Tecnica\\Projeto\\AgendaApp\\api\\AgendaAi\\AgendaAi.csproj",
+        "projectUniqueName": "C:\\Users\\Cliente\\Music\\Teste45\\quasar-project\\api\\AgendaAi\\AgendaAi.csproj",
         "projectName": "AgendaAi",
-        "projectPath": "C:\\Users\\Tiago\\Desktop\\Especialização Tecnica\\Projeto\\AgendaApp\\api\\AgendaAi\\AgendaAi.csproj",
-        "packagesPath": "C:\\Users\\Tiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tiago\\Desktop\\Especialização Tecnica\\Projeto\\AgendaApp\\api\\AgendaAi\\obj\\",
+        "projectPath": "C:\\Users\\Cliente\\Music\\Teste45\\quasar-project\\api\\AgendaAi\\AgendaAi.csproj",
+        "packagesPath": "C:\\Users\\Cliente\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Cliente\\Music\\Teste45\\quasar-project\\api\\AgendaAi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Cliente\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
