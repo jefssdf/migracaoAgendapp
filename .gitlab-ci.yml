@@ -1,11 +1,11 @@
 variables:
-  SONAR_TOKEN: "9dffff8721e2658aeca8b14267d4f54963d93ade"  # Substitua pelo seu token de acesso do SonarCloud
-  SONAR_HOST_URL: "https://sonarcloud.io"  # URL do SonarCloud, se estiver usando SonarQube substitua pela URL do seu servidor
+  SONAR_TOKEN: "9dffff8721e2658aeca8b14267d4f54963d93ade" 
+  SONAR_HOST_URL: "https://sonarcloud.io"  
 
 stages:
   - build
   - test
-  - analyze  # Etapa para análise estática com SonarCloud
+  - analyze  
 
 build:
   stage: build
@@ -27,4 +27,8 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - sonar-scanner
+    - sonar-scanner \
+        -Dsonar.host.url=$SONAR_HOST_URL \
+        -Dsonar.login=$SONAR_TOKEN \
+        -Dsonar.projectKey=agendaapp2 \
+        -Dsonar.organization=AgendaApp 
