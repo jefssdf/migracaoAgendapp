@@ -1,9 +1,8 @@
 variables:
-  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Define o local do cache da tarefa de análise
-  GIT_DEPTH: "0"  # Indica ao git para buscar todos os branches do projeto, necessário para a tarefa de análise
-  SONAR_HOST_URL: "https://sonarcloud.io"  # URL do SonarCloud
-  # Substitua 'seu_token_aqui' pelo seu token de acesso ao SonarCloud
-  SONAR_TOKEN: "9dffff8721e2658aeca8b14267d4f54963d93ade"  # Token de acesso ao SonarCloud
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  
+  GIT_DEPTH: "0"  
+  SONAR_HOST_URL: "https://sonarcloud.io"  
+  SONAR_TOKEN: "9dffff8721e2658aeca8b14267d4f54963d93ade"  
 
 stages:
   - test
