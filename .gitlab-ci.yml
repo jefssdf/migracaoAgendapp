@@ -1,0 +1,12 @@
+
+sonarcloud-check:
+  stage: analyze
+  image:
+    name: maven:3.8.1-jdk-11
+  variables:
+    SONAR_HOST_URL: "https://sonarcloud.io"
+    SONAR_TOKEN: "9dffff8721e2658aeca8b14267d4f54963d93ade"
+  script:
+    - mvn sonar:sonar \
+      -Dsonar.host.url=$SONAR_HOST_URL \
+      -Dsonar.login=$SONAR_TOKEN
