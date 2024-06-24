@@ -1,24 +1,17 @@
 variables:
-  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
-  GIT_DEPTH: "1"  # Reduzido para clonar apenas o último commit e a branch de destino
-  SONAR_HOST_URL: "https://sonarcloud.io"
-  SONAR_TOKEN: "9dffff8721e2658aeca8b14267d4f54963d93ade"
-
-stages:
+ SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+ GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+ stages:
   - test
-
 sonarcloud-check:
-  stage: test
-  image: maven:3-openjdk-17
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
-  script:
-    - mvn verify sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=agendaapp2_AgendaApp
-  only:
-    - merge_requests
-    - master
-    - develop
-    - main
-    - dev
+ image:
+   name: sonarsource/sonar-scanner-cli:latest
+   entrypoint: [""]
+ cache:
+   key: "${CI_JOB_NAME}"
+   paths:
+     - .sonar/cache
+ script:
+   - sonar-scanner
+ rules:
+    - if: $CI_COMMIT_REF_NAME == 'main' || $CI_PIPELINE_SOURCE == 'merge_request_event'
