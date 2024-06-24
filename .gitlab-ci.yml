@@ -29,6 +29,6 @@ sonarcloud-check:
   script:
     - sonar-scanner \
         -Dsonar.host.url=$SONAR_HOST_URL \
-        -Dsonar.projectKey=agendaapp2 \
-        -Dsonar.organization=AgendaApp \
+        -Dsonar.projectKey=agendaapp2_AgendaApp \
+        -Dsonar.organization=agendaapp2 \
         -Dsonar.login=$SONAR_TOKEN
