@@ -5,9 +5,20 @@ variables:
   SONAR_TOKEN: "9dffff8721e2658aeca8b14267d4f54963d93ade"  # Token de acesso ao servidor do SonarQube ou SonarCloud
 
 stages:
+  - clean_cache
   - test
 
+clean_cache:
+  stage: clean_cache
+  script:
+    - rm -rf .sonar/cache
+  except:
+    - merge_requests
+    - main
+    - develop
+
 sonarcloud-check:
+  stage: test
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
