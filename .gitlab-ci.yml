@@ -1,6 +1,5 @@
-
 sonarcloud-check:
-  stage: analyze
+  stage: test
   image:
     name: maven:3.8.1-jdk-11
   variables:
