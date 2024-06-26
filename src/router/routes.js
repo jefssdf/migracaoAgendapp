@@ -9,13 +9,23 @@ const routes = [
     ]
   },
 
+  {
+    path: '/LoginInicio',
+    component: () => import('layouts/LoginLayout.vue'),
+    children: [
+      { path: '/LoginInicio', name: 'Login', component: () => import('src/pages/login-inicio.vue') }
+
+    ]
+  },
+
   // Always leave this as last one,
   // but you can also remove it
-// oioi
   {
     path: '/:catchAll(.*)*',
+    redirect: '/LoginInicio',
     component: () => import('pages/ErrorNotFound.vue')
   }
 ]
+
 
 export default routes

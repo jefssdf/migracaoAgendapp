@@ -4,36 +4,35 @@
       <h1 class="text-h5">Listagem de Clientes</h1>
       <q-card class="q-mt-md">
         <q-card-section>
-          <!-- Listagem de clientes aqui -->
-          <div v-for="(cliente, index) in clientes" :key="index" class="flex justify-between items-center q-mb-md">
-            <q-paragraph class="q-ma-none">{{ cliente.name }}</q-paragraph>
+          <!-- Listagem de entidades legais aqui -->
+          <div v-for="(entidade, index) in entidadesLegais" :key="index" class="flex justify-between items-center q-mb-md">
+            <q-paragraph class="q-ma-none">{{ entidade.name }}</q-paragraph>
             <div>
-              <q-btn @click="editarCliente(index)" color="primary" label="Editar" class="q-mr-md" />
-              <q-btn @click="removerCliente(index)" color="negative" label="Remover" />
+              <q-btn @click="editarEntidadeLegal(index)" color="primary" label="Editar" class="q-mr-md" />
+              <q-btn @click="removerEntidadeLegal(index)" color="negative" label="Remover" />
             </div>
           </div>
         </q-card-section>
       </q-card>
     </div>
-    <!-- Modal de edição do cliente -->
+    <!-- Modal de edição da entidade legal -->
     <q-dialog v-model="mostrarModal" persistent class="larger-dialog">
       <q-card>
         <q-card-section>
-          <h2 class="text-h6">Editar Cliente</h2>
-          <q-input v-model="clienteEditado.name" label="Nome" />
-          <q-input v-model="clienteEditado.password" label="Senha" type="password" />
-          <q-input v-model="clienteEditado.email" label="E-mail" />
-          <q-input v-model="clienteEditado.phoneNumber" label="Telefone" />
+          <h2 class="text-h6">Editar Entidade Legal</h2>
+          <q-input v-model="entidadeLegalEditada.name" label="Nome" />
+          <q-input v-model="entidadeLegalEditada.password" label="Senha" type="password" />
+          <q-input v-model="entidadeLegalEditada.email" label="E-mail" />
+          <q-input v-model="entidadeLegalEditada.phoneNumber" label="Telefone" />
         </q-card-section>
         <q-card-actions align="right">
           <q-btn label="Cancelar" color="negative" @click="fecharModal" />
-          <q-btn label="Salvar" color="primary" @click="salvarCliente" />
+          <q-btn label="Salvar" color="primary" @click="salvarEntidadeLegal" />
         </q-card-actions>
       </q-card>
     </q-dialog>
   </q-page>
 </template>
-
 <script>
 import { defineComponent } from 'vue';
 import axios from 'axios';
@@ -42,60 +41,80 @@ export default defineComponent({
   name: 'IndexPage',
   data() {
     return {
-      clientes: [],
+      entidadesLegais: [],
       mostrarModal: false,
-      clienteEditado: {
+      entidadeLegalEditada: {
         id: null,
         name: '',
         password: '',
         email: '',
         phoneNumber: ''
       },
-      clienteIndexEditado: null
+      entidadeLegalIndexEditada: null
     };
   },
   mounted() {
-    this.carregarClientes();
+    this.carregarEntidadesLegais();
   },
   methods: {
-    async carregarClientes() {
+    async carregarEntidadesLegais() {
       try {
-        const response = await axios.get('https://65ff33d3df565f1a6144de0b.mockapi.io/lista-clientes');
-        this.clientes = response.data;
+        const response = await axios.get('http://localhost:5123/LegalEntity');
+        this.entidadesLegais = response.data;
       } catch (error) {
-        console.error('Erro ao carregar clientes:', error);
+        console.error('Erro ao carregar entidades legais:', error);
       }
     },
-    editarCliente(index) {
-      this.clienteEditado = { ...this.clientes[index] };
-      this.clienteIndexEditado = index;
+    editarEntidadeLegal(index) {
+      const { legalEntityId, name, email, password, phoneNumber } = this.entidadesLegais[index];
+      this.entidadeLegalEditada = {
+        id: legalEntityId,
+        name,
+        email,
+        password,
+        phoneNumber
+      };
+      this.entidadeLegalIndexEditada = index;
       this.mostrarModal = true;
     },
     fecharModal() {
       this.mostrarModal = false;
-      this.clienteEditado = { id: null, name: '', password: '', email: '', phoneNumber: '' }; // Limpar os dados do cliente editado
-      this.clienteIndexEditado = null;
+      this.entidadeLegalEditada = {
+        id: null,
+        name: '',
+        password: '',
+        email: '',
+        phoneNumber: ''
+      };
+      this.entidadeLegalIndexEditada = null;
     },
-    async salvarCliente() {
-      if (this.clienteIndexEditado !== null) {
+    async salvarEntidadeLegal() {
+      if (this.entidadeLegalIndexEditada !== null) {
         try {
-          const cliente = this.clienteEditado;
-          await axios.put(`https://65ff33d3df565f1a6144de0b.mockapi.io/lista-clientes/${cliente.id}`, cliente);
-          this.clientes[this.clienteIndexEditado] = { ...cliente };
+          const entidade = this.entidadeLegalEditada;
+          await axios.put(`http://localhost:5123/LegalEntity/${entidade.id}`, entidade);
+          this.entidadesLegais[this.entidadeLegalIndexEditada] = { ...entidade };
+          window.location.reload(); // Recarregar a página após o PUT
         } catch (error) {
-          console.error('Erro ao salvar cliente:', error);
+          console.error('Erro ao salvar entidade legal:', error);
         }
       }
-      this.fecharModal(); // Fechar o modal após salvar
+      this.fecharModal();
     },
-    async removerCliente(index) {
-      const clienteId = this.clientes[index].id;
+    async removerEntidadeLegal(index) {
+      const legalEntityId = this.entidadesLegais[index].legalEntityId;
+      if (!legalEntityId) {
+        console.error('ID da entidade legal não encontrado');
+        return;
+      }
+
       try {
-        await axios.delete(`https://65ff33d3df565f1a6144de0b.mockapi.io/lista-clientes/${clienteId}`);
-        this.clientes.splice(index, 1); // Remove o cliente da lista localmente
-        console.log(`Cliente ${clienteId} removido com sucesso`);
+        await axios.delete(`http://localhost:5123/LegalEntity/${legalEntityId}`);
+        this.entidadesLegais.splice(index, 1);
+        console.log(`Entidade legal ${legalEntityId} removida com sucesso`);
+        window.location.reload(); // Recarregar a página após o DELETE
       } catch (error) {
-        console.error('Erro ao remover cliente:', error);
+        console.error('Erro ao remover entidade legal:', error);
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="custom-header" elevated>
-      <q-toolbar>
+    <q-header elevated class="toolbar-green">
+      <q-toolbar color="#24cb53">
         <q-btn
           flat
           dense
@@ -9,20 +9,24 @@
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
+          class="menu-icon"
         />
 
+        <q-toolbar-title style="color: white;">
+          Agenda App
+        </q-toolbar-title>
+
+        <!-- Botão de Logout -->
         <q-btn
           flat
           dense
           round
-          icon="home"
-          aria-label="Home"
-          @click="$router.push('/index')"
+          icon="logout"
+          aria-label="Logout"
+          class="menu-icon"
+          style="color: white;"
+          @click="logout"
         />
-
-        <q-toolbar-title>
-          Agenda App
-        </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -30,29 +34,33 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      class="drawer-green"
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Menu
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
-
-        <q-item clickable @click="$router.push('/cadastro-cliente')">
+        <q-item clickable @click="goToDashboard">
           <q-item-section>
-            <q-item-label>Cadastro de Cliente</q-item-label>
+            <q-item-label>
+              <q-icon name="dashboard" /> <!-- Ícone de dashboard -->
+              Dashboard
+            </q-item-label>
           </q-item-section>
         </q-item>
 
-        <q-item clickable @click="$router.push('/lista-clientes')">
+        <q-item clickable @click="goToCadastroCliente">
           <q-item-section>
-            <q-item-label>Lista de Clientes</q-item-label>
+            <q-item-label>
+              <q-icon name="person_add" /> <!-- Ícone de cadastro de cliente -->
+              Cadastro de Cliente
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable @click="goToListaClientes">
+          <q-item-section>
+            <q-item-label>
+              <q-icon name="library_books" /> <!-- Ícone de lista de clientes -->
+              Lista de Clientes
+            </q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -66,35 +74,59 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
-
-]
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'MainLayout',
 
-  components: {
-    EssentialLink
-  },
-
   setup () {
     const leftDrawerOpen = ref(false)
+    const router = useRouter()
+
+    const toggleLeftDrawer = () => {
+      leftDrawerOpen.value = !leftDrawerOpen.value
+    }
+
+    const goToDashboard = () => {
+      router.push('/index')
+      toggleLeftDrawer()
+    }
+
+    const goToCadastroCliente = () => {
+      router.push('/cadastro-cliente')
+      toggleLeftDrawer()
+    }
+
+    const goToListaClientes = () => {
+      router.push('/lista-clientes')
+      toggleLeftDrawer()
+    }
+
+    const logout = () => {
+      // Aqui você pode adicionar a lógica para limpar a sessão ou realizar o logout
+      // Redirecionar para a tela de login, por exemplo:
+      router.push('/login')
+    }
 
     return {
-      linksList,
       leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      toggleLeftDrawer,
+      goToDashboard,
+      goToCadastroCliente,
+      goToListaClientes,
+      logout
     }
   }
 })
 </script>
 
 <style>
-.custom-header {
-  background-color: green; /* Altere para a cor verde que desejar */
+.toolbar-green { background-color: green; }
+.menu-icon { color: white; }
+.drawer-green { background-color: #ebebeb; color: rgb(0, 0, 0); }
+.q-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 </style>
