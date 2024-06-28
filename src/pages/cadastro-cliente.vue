@@ -82,6 +82,7 @@
 import { ref, computed } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import { Notify } from 'quasar'
 
 export default {
   setup() {
@@ -91,8 +92,8 @@ export default {
     const senha = ref('')
     const confirmarSenha = ref('')
     const concordoTermos = ref(false)
-    const showPassword = ref('password')
-    const showConfirmPassword = ref('password')
+    const showPassword = ref(true)
+    const showConfirmPassword = ref(true)
     const router = useRouter()
 
     const todosCamposPreenchidos = computed(() => {
@@ -108,12 +109,18 @@ export default {
 
     const enviarFormulario = async () => {
       if (senha.value !== confirmarSenha.value) {
-        alert('As senhas não coincidem')
+        Notify.create({
+          type: 'negative',
+          message: 'As senhas não coincidem'
+        })
         return
       }
 
       if (!concordoTermos.value) {
-        alert('Você deve concordar com os termos')
+        Notify.create({
+          type: 'negative',
+          message: 'Você deve concordar com os termos'
+        })
         return
       }
 
@@ -126,29 +133,33 @@ export default {
         })
 
         if (response.status === 200) {
-          alert('Cadastro realizado com sucesso!')
+          Notify.create({
+            type: 'positive',
+            message: 'Cadastro realizado com sucesso!'
+          })
           router.push({ name: 'AgendarConsultas' })
         } else if (response.status === 204) {
-          // Tratar status 204 (No Content) de maneira silenciosa
           console.log('Requisição bem-sucedida, mas sem conteúdo (204 No Content)')
-          // Você pode decidir não fazer nada aqui, pois é esperado não ter conteúdo de retorno
         } else {
           console.error('Erro ao cadastrar entidade legal', response)
-          // Não exibir alerta de erro aqui para erros não tratados
+          Notify.create({
+            type: 'negative',
+            message: 'Erro ao cadastrar entidade legal'
+          })
         }
       } catch (error) {
         if (error.response) {
-          // O servidor retornou um status de erro
           console.error('Erro ao cadastrar entidade legal', error.response)
-          alert(`Erro ${error.response.status}: ${error.response.data.message}`)
+          Notify.create({
+            type: 'negative',
+            message: `Erro ${error.response.status}: ${error.response.data.message}`
+          })
         } else if (error.request) {
-          // A requisição foi feita, mas não houve resposta do servidor
           console.error('Erro ao fazer requisição', error.request)
-          // Não exibir alerta de erro aqui para erros de requisição não tratados
-        } else {
-          // Outro tipo de erro
-          console.error('Erro inesperado', error.message)
-          // Não exibir alerta de erro aqui para erros inesperados não tratados
+          Notify.create({
+            type: 'negative',
+            message: 'Erro ao fazer requisição'
+          })
         }
       }
     }

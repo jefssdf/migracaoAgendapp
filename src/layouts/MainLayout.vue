@@ -36,6 +36,13 @@
       bordered
       class="drawer-green"
     >
+    <q-item-label
+          header
+          class="menu-header"
+          style="font-size: 20px;"
+        >
+          Menus
+        </q-item-label>
       <q-list>
         <q-item clickable @click="goToDashboard">
           <q-item-section>
@@ -64,6 +71,9 @@
           </q-item-section>
         </q-item>
       </q-list>
+      <q-img src="https://i.ibb.co/CzzsksM/logo.png" alt="Logo"
+       style="width: 350px; height: auto; margin-top: auto; position: absolute; bottom: -35px; left: 61%; transform: translateX(-50%);" />
+
     </q-drawer>
 
     <q-page-container>

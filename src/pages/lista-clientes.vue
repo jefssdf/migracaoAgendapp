@@ -33,9 +33,11 @@
     </q-dialog>
   </q-page>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 import axios from 'axios';
+import { Notify } from 'quasar';
 
 export default defineComponent({
   name: 'IndexPage',
@@ -94,12 +96,20 @@ export default defineComponent({
           const entidade = this.entidadeLegalEditada;
           await axios.put(`http://localhost:5123/LegalEntity/${entidade.id}`, entidade);
           this.entidadesLegais[this.entidadeLegalIndexEditada] = { ...entidade };
-          window.location.reload(); // Recarregar a página após o PUT
+          Notify.create({
+            type: 'positive',
+            message: 'Estabelecimento salvo com sucesso!'
+          });
+          this.fecharModal();
+          setTimeout(() => window.location.reload(), 500); // Recarregar a página após o PUT
         } catch (error) {
-          console.error('Erro ao salvar entidade legal:', error);
+          console.error('Erro ao salvar dados:', error);
+          Notify.create({
+            type: 'negative',
+            message: 'Erro ao salvar dados do estabelecimento'
+          });
         }
       }
-      this.fecharModal();
     },
     async removerEntidadeLegal(index) {
       const legalEntityId = this.entidadesLegais[index].legalEntityId;
@@ -111,10 +121,17 @@ export default defineComponent({
       try {
         await axios.delete(`http://localhost:5123/LegalEntity/${legalEntityId}`);
         this.entidadesLegais.splice(index, 1);
-        console.log(`Entidade legal ${legalEntityId} removida com sucesso`);
-        window.location.reload(); // Recarregar a página após o DELETE
+        Notify.create({
+          type: 'positive',
+          message: 'Estabelecimento removido com sucesso'
+        });
+        setTimeout(() => window.location.reload(), 500); // Recarregar a página após o DELETE
       } catch (error) {
         console.error('Erro ao remover entidade legal:', error);
+        Notify.create({
+          type: 'negative',
+          message: 'Erro ao remover estabelecimento'
+        });
       }
     }
   }
